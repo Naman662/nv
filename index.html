@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Birthday Mam</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Include jQuery -->
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(45deg, #f39c12, #8e44ad); /* Gradient background */
+        font-family: 'Roboto', sans-serif;
+        text-align: center;
+        color: white;
+        overflow: hidden;
+      }
+
+      h1 {
+        font-size: 4rem;
+        font-weight: bold;
+        color: #fff;
+        text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
+        margin-top: 100px;
+        letter-spacing: 3px;
+        opacity: 0;
+      }
+
+      .confetti {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+        pointer-events: none;
+      }
+
+      /* Confetti animation */
+      .confetti-particle {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background-color: #fff;
+        animation: fall 2s infinite, float 1.5s ease-in-out infinite;
+      }
+
+      @keyframes fall {
+        0% {
+          transform: translateY(-100px) rotate(0deg);
+        }
+        100% {
+          transform: translateY(100vh) rotate(360deg);
+        }
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateX(0);
+        }
+        50% {
+          transform: translateX(50px);
+        }
+        100% {
+          transform: translateX(0);
+        }
+      }
+
+      /* Birthday message fade-in effect */
+      .birthday-message {
+        font-size: 4rem;
+        font-weight: 700;
+        color: #ffeb3b;
+        margin-top: 200px;
+        opacity: 0;
+        transition: opacity 2s;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="birthday-message">Happy Birthday Mam</div>
+
+    <!-- Confetti container -->
+    <div class="confetti" id="confetti"></div>
+
+    <script>
+      // Fade in the birthday message
+      $(document).ready(function () {
+        $(".birthday-message").fadeTo(2000, 1); // Gradually make the birthday message visible
+      });
+
+      // Create confetti effect
+      function createConfetti() {
+        const confettiContainer = document.getElementById('confetti');
+        const colors = ['#ff0', '#ff6347', '#1e90ff', '#32cd32', '#ff1493'];
+
+        setInterval(function () {
+          const confettiParticle = document.createElement('div');
+          const randomColor = colors[Math.floor(Math.random() * colors.length)];
+          const randomPositionX = Math.random() * window.innerWidth;
+          const randomDuration = Math.random() * 1 + 1; // Between 1s and 2s
+          const randomSize = Math.random() * 10 + 5; // Size between 5px and 15px
+
+          confettiParticle.classList.add('confetti-particle');
+          confettiParticle.style.backgroundColor = randomColor;
+          confettiParticle.style.left = randomPositionX + 'px';
+          confettiParticle.style.width = randomSize + 'px';
+          confettiParticle.style.height = randomSize + 'px';
+
+          confettiContainer.appendChild(confettiParticle);
+
+          // Remove the confetti particle after animation ends
+          setTimeout(function () {
+            confettiParticle.remove();
+          }, 2000); // Duration of the confetti fall
+        }, 100); // Generate confetti every 100ms
+      }
+
+      // Start the confetti animation once the document is loaded
+      createConfetti();
+    </script>
+  </body>
+</html>
