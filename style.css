@@ -1,0 +1,102 @@
+* General Styles */
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(45deg, #f39c12, #8e44ad); /* Vibrant gradient background */
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+  color: white;
+  overflow: hidden;
+  height: 100vh; /* Ensure body takes up full height */
+}
+
+/* Birthday Message */
+h1 {
+  font-size: 4rem;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 4px 4px 12px rgba(0, 0, 0, 0.6); /* Soft glow around the text */
+  margin-top: 100px;
+  letter-spacing: 3px;
+  opacity: 0;
+  transition: opacity 2s;
+}
+
+/* Style for the actual birthday message text */
+.birthday-message {
+  font-size: 4rem;
+  font-weight: 700;
+  color: #ffeb3b; /* Yellow color for the message */
+  margin-top: 200px;
+  opacity: 0;
+  transition: opacity 2s ease-in-out;
+  letter-spacing: 5px;
+}
+
+/* Confetti Container */
+.confetti {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+/* Confetti Particle Style */
+.confetti-particle {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background-color: #fff;
+  border-radius: 50%;
+  animation: fall 2s infinite, float 1.5s ease-in-out infinite;
+  opacity: 0;
+}
+
+/* Keyframe animation for the falling confetti */
+@keyframes fall {
+  0% {
+    transform: translateY(-100px) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Keyframe animation for the floating movement */
+@keyframes float {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(50px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Styling the particles to look more festive */
+.confetti-particle:nth-child(odd) {
+  background-color: #ff6347; /* Red */
+}
+
+.confetti-particle:nth-child(even) {
+  background-color: #32cd32; /* Green */
+}
+
+/* Adjusting for mobile responsiveness */
+@media screen and (max-width: 768px) {
+  .birthday-message {
+    font-size: 2.5rem; /* Smaller font size on mobile */
+  }
+
+  .confetti-particle {
+    width: 8px; /* Smaller confetti on mobile */
+    height: 8px;
+  }
+}
